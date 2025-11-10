@@ -26,7 +26,7 @@ const Hero = () => {
       <div className="section-container relative z-10 text-center py-20">
         <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000">
           <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Hi, I'm <span className="gradient-text">Your Name</span>
+            Hi, I'm <span className="gradient-text">Max Mena</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             Developer, Writer, Learner. I build things and share what I learn along the way.

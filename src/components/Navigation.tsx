@@ -21,7 +21,7 @@ const Navigation = () => {
             onClick={() => scrollToSection("hero")}
             className="text-xl font-bold gradient-text cursor-pointer hover:opacity-80 transition-opacity"
           >
-            Your Name
+            Max Mena
           </button>
 
           {/* Desktop Navigation */}
