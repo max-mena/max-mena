@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: '/max-mena/', // <-- This is the important part
+  // base: '/max-mena/', // <-- This is the important part
 }));
 
 
