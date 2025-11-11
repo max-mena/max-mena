@@ -1,4 +1,4 @@
-import profileImage from "@/assets/profile-placeholder.jpg";
+import profileImage from "@/assets/caricatura-max-2.png";
 
 const About = () => {
   return (
@@ -9,17 +9,15 @@ const About = () => {
             <h2 className="text-4xl font-bold mb-6">About Me</h2>
             <div className="space-y-4 text-muted-foreground">
               <p>
-                Welcome to my corner of the internet! I'm a passionate developer who loves to build, learn, 
-                and share knowledge with the community.
+                My experience lies in Data Engineering, I have design and optimize scalable data solutions 
+                to facilitate strategic decision-making. I specialize in developing data models, automating 
+                complex processes, and ensuring high data quality using industry best practices.
               </p>
               <p>
-                Through my career, I've had the opportunity to work on fascinating projects, solve complex 
-                problems, and continuously expand my skill set. This website is where I document my journey, 
-                share insights from my professional experiences, and explore topics that fascinate me.
-              </p>
-              <p>
-                When I'm not coding, you'll find me exploring new technologies, contributing to open source, 
-                or writing about the lessons I've learned along the way.
+                I'm working with pipeline development, with SQL and Python as my primary tools 
+                for data transformation and orchestration. My technical skills are supported by a degree in Computer Science. 
+                I emphasize continuous learning in cloud infrastructure and data architecture, 
+                I used to work in the management side but from a couple of years know I'm fully into development.
               </p>
             </div>
           </div>
