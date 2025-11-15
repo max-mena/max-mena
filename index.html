@@ -1,25 +1,539 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Max Mena - Developer & Writer</title>
-    <meta name="description" content="Professional portfolio and blog where I share thoughts about my work, career, and things I learn." />
-    <meta name="author" content="Max Mena" />
+    <meta name="description" content="Professional portfolio and blog where I share thoughts about my work, career, and things I learn.">
+    <meta name="author" content="Max Mena">
+    
+    <meta property="og:title" content="Max Mena - Developer & Writer">
+    <meta property="og:description" content="Professional portfolio and blog where I share thoughts about my work, career, and things I learn.">
+    <meta property="og:type" content="website">
+    
+    <style>
+        /* Tailwind CSS Reset and Base Styles */
+        *, ::before, ::after {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb;
+        }
+        
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+        
+        body {
+            margin: 0;
+            line-height: inherit;
+            background-color: hsl(0, 0%, 7%);
+            color: hsl(45, 100%, 90%);
+        }
+        
+        /* CSS Variables */
+        :root {
+            --background: 0 0% 7%;
+            --foreground: 45 100% 90%;
+            --card: 0 0% 10%;
+            --card-foreground: 45 100% 90%;
+            --primary: 45 100% 51%;
+            --primary-foreground: 0 0% 0%;
+            --secondary: 45 20% 20%;
+            --secondary-foreground: 45 100% 90%;
+            --muted: 0 0% 15%;
+            --muted-foreground: 45 20% 60%;
+            --accent: 45 100% 51%;
+            --accent-foreground: 0 0% 0%;
+            --border: 45 15% 20%;
+            --input: 45 15% 20%;
+            --ring: 45 100% 51%;
+            --section-bg: 0 0% 5%;
+            --radius: 0.5rem;
+        }
+        
+        /* Utility Classes */
+        .min-h-screen { min-height: 100vh; }
+        .fixed { position: fixed; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .bottom-8 { bottom: 2rem; }
+        .left-1\/2 { left: 50%; }
+        .z-0 { z-index: 0; }
+        .z-10 { z-index: 10; }
+        .z-50 { z-index: 50; }
+        
+        .flex { display: flex; }
+        .grid { display: grid; }
+        .hidden { display: none; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-center { justify-content: center; }
+        .justify-between { justify-content: space-between; }
+        .flex-col { flex-direction: column; }
+        .flex-wrap { flex-wrap: wrap; }
+        .gap-1 { gap: 0.25rem; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-6 { gap: 1.5rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-12 { gap: 3rem; }
+        .space-y-4 > :not([hidden]) ~ :not([hidden]) { margin-top: 1rem; }
+        .space-y-6 > :not([hidden]) ~ :not([hidden]) { margin-top: 1.5rem; }
+        
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .h-16 { height: 4rem; }
+        .h-4 { height: 1rem; }
+        .h-5 { height: 1.25rem; }
+        .h-6 { height: 1.5rem; }
+        .w-64 { width: 16rem; }
+        .h-64 { height: 16rem; }
+        .max-w-2xl { max-width: 42rem; }
+        .max-w-3xl { max-width: 48rem; }
+        
+        .p-2 { padding: 0.5rem; }
+        .p-6 { padding: 1.5rem; }
+        .px-2\.5 { padding-left: 0.625rem; padding-right: 0.625rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .py-0\.5 { padding-top: 0.125rem; padding-bottom: 0.125rem; }
+        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+        .pt-0 { padding-top: 0; }
+        .mb-1 { margin-bottom: 0.25rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mb-12 { margin-bottom: 3rem; }
+        .mt-1 { margin-top: 0.25rem; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        
+        .rounded-md { border-radius: calc(var(--radius) - 2px); }
+        .rounded-lg { border-radius: var(--radius); }
+        .rounded-full { border-radius: 9999px; }
+        .border { border-width: 1px; }
+        .border-b { border-bottom-width: 1px; }
+        .border-l-4 { border-left-width: 4px; }
+        .border-t { border-top-width: 1px; }
+        
+        .bg-background { background-color: hsl(var(--background)); }
+        .bg-card { background-color: hsl(var(--card)); }
+        .bg-primary { background-color: hsl(var(--primary)); }
+        .bg-section-bg { background-color: hsl(var(--section-bg)); }
+        .bg-primary\/10 { background-color: hsl(var(--primary) / 0.1); }
+        .backdrop-blur-lg { backdrop-filter: blur(16px); }
+        .bg-background\/80 { background-color: hsl(var(--background) / 0.8); }
+        
+        .text-primary { color: hsl(var(--primary)); }
+        .text-foreground { color: hsl(var(--foreground)); }
+        .text-muted-foreground { color: hsl(var(--muted-foreground)); }
+        .text-primary-foreground { color: hsl(var(--primary-foreground)); }
+        .text-card-foreground { color: hsl(var(--card-foreground)); }
+        .text-accent-foreground { color: hsl(var(--accent-foreground)); }
+        
+        .text-xs { font-size: 0.75rem; line-height: 1rem; }
+        .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+        .text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .text-5xl { font-size: 3rem; line-height: 1; }
+        
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 700; }
+        
+        .text-center { text-align: center; }
+        .leading-none { line-height: 1; }
+        .tracking-tight { letter-spacing: -0.025em; }
+        
+        .shadow-sm { box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05); }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); }
+        
+        .transition-colors { transition-property: color, background-color, border-color; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .transition-shadow { transition-property: box-shadow; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .transition-opacity { transition-property: opacity; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        
+        .object-cover { object-fit: cover; }
+        .overflow-hidden { overflow: hidden; }
+        .cursor-pointer { cursor: pointer; }
+        
+        .border-border { border-color: hsl(var(--border)); }
+        .border-l-primary { border-left-color: hsl(var(--primary)); }
+        .border-transparent { border-color: transparent; }
+        
+        .hover\:bg-primary:hover { background-color: hsl(var(--primary)); }
+        .hover\:bg-primary\/90:hover { background-color: hsl(var(--primary) / 0.9); }
+        .hover\:bg-accent:hover { background-color: hsl(var(--accent)); }
+        .hover\:text-primary:hover { color: hsl(var(--primary)); }
+        .hover\:text-accent-foreground:hover { color: hsl(var(--accent-foreground)); }
+        .hover\:opacity-80:hover { opacity: 0.8; }
+        .hover\:shadow-lg:hover { box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1); }
+        .hover\:underline:hover { text-decoration-line: underline; }
+        
+        .group:hover .group-hover\:text-primary { color: hsl(var(--primary)); }
+        
+        /* Custom Classes */
+        .section-container {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 72rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        
+        .gradient-text {
+            background-image: linear-gradient(to right, hsl(var(--primary)), hsl(var(--accent)));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .bg-gradient-to-b {
+            background-image: linear-gradient(to bottom, hsl(var(--background) / 0.9), hsl(var(--background) / 0.7), hsl(var(--background)));
+        }
+        
+        .-translate-x-1\/2 {
+            transform: translateX(-50%);
+        }
+        
+        .animate-bounce {
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-25%);
+                animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+                transform: none;
+                animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+        }
+        
+        .animate-in {
+            animation: fadeInSlide 1s ease-out;
+        }
+        
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(1rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .border-4 { border-width: 4px; }
+        .blur-2xl { filter: blur(40px); }
+        .opacity-20 { opacity: 0.2; }
+        .flex-1 { flex: 1 1 0%; }
+        .order-1 { order: 1; }
+        .order-2 { order: 2; }
+        .w-fit { width: fit-content; }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            border-radius: calc(var(--radius) - 2px);
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: colors 150ms;
+            cursor: pointer;
+            height: 2.75rem;
+            padding: 0.5rem 2rem;
+        }
+        
+        .btn-primary {
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+        
+        .btn-primary:hover {
+            background-color: hsl(var(--primary) / 0.9);
+        }
+        
+        .btn-outline {
+            border: 1px solid hsl(var(--input));
+            background-color: hsl(var(--background));
+        }
+        
+        .btn-outline:hover {
+            background-color: hsl(var(--accent));
+            color: hsl(var(--accent-foreground));
+        }
+        
+        /* Card Styles */
+        .card {
+            border-radius: var(--radius);
+            border: 1px solid hsl(var(--border));
+            background-color: hsl(var(--card));
+            color: hsl(var(--card-foreground));
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+        
+        /* Badge Styles */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+            padding: 0.125rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: hsl(var(--primary));
+            color: hsl(var(--primary-foreground));
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+            .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .md\:text-2xl { font-size: 1.5rem; line-height: 2rem; }
+            .md\:text-7xl { font-size: 4.5rem; line-height: 1; }
+            .md\:order-1 { order: 1; }
+            .md\:order-2 { order: 2; }
+            .md\:w-80 { width: 20rem; }
+            .md\:h-80 { height: 20rem; }
+            .section-container {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .lg\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+            .section-container {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+        
+        /* SVG Icons */
+        svg {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+        <div class="section-container">
+            <div class="flex items-center justify-between h-16">
+                <button class="text-xl font-bold gradient-text cursor-pointer hover-opacity-80 transition-opacity" onclick="scrollToSection('hero')">
+                    Max Mena
+                </button>
+                <div class="hidden md:flex items-center gap-8">
+                    <button class="text-sm font-medium text-foreground hover-text-primary transition-colors" onclick="scrollToSection('about')">About</button>
+                    <button class="text-sm font-medium text-foreground hover-text-primary transition-colors" onclick="scrollToSection('blog')">Blog</button>
+                    <button class="text-sm font-medium text-foreground hover-text-primary transition-colors" onclick="scrollToSection('experience')">Experience</button>
+                    <button class="btn btn-primary" onclick="scrollToSection('contact')">Contact</button>
+                </div>
+                <button class="md:hidden p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="4" x2="20" y1="12" y2="12"></line>
+                        <line x1="4" x2="20" y1="6" y2="6"></line>
+                        <line x1="4" x2="20" y1="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
 
-    <meta property="og:title" content="Max Mena - Developer & Writer" />
-    <meta property="og:description" content="Professional portfolio and blog where I share thoughts about my work, career, and things I learn." />
-    <meta property="og:type" content="website" />
-    <!-- <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" /> -->
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072" alt="Hero background" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-b"></div>
+            </div>
+            <div class="section-container relative z-10 text-center py-20">
+                <div class="animate-in">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                        Hi, I'm <span class="gradient-text">Max Mena</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+                        Developer, Writer, Learner. I build things and share what I learn along the way.
+                    </p>
+                    <div class="flex gap-4 justify-center flex-wrap">
+                        <button class="btn btn-primary" onclick="scrollToSection('blog')">Read My Thoughts</button>
+                        <button class="btn btn-outline" onclick="scrollToSection('contact')">Get in Touch</button>
+                    </div>
+                </div>
+                <button class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce" aria-label="Scroll to about section" onclick="scrollToSection('about')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 text-muted-foreground">
+                        <path d="M12 5v14"></path>
+                        <path d="m19 12-7 7-7-7"></path>
+                    </svg>
+                </button>
+            </div>
+        </section>
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <!-- <meta name="twitter:site" content="@Lovable" /> -->
-    <!-- <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" /> -->
-    <script type="module" crossorigin src="/assets/index-BmdfEWxA.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BYJI762O.css">
-  </head>
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-section-bg">
+            <div class="section-container">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 md:order-1">
+                        <h2 class="text-4xl font-bold mb-6">About Me</h2>
+                        <div class="space-y-4 text-muted-foreground">
+                            <p>My experience lies in Data Engineering, I have design and optimize scalable data solutions to facilitate strategic decision-making. I specialize in developing data models, automating complex processes, and ensuring high data quality using industry best practices.</p>
+                            <p>I'm working with pipeline development, with SQL and Python as my primary tools for data transformation and orchestration. My technical skills are supported by a degree in Computer Science. I emphasize continuous learning in cloud infrastructure and data architecture, I used to work in the management side but from a couple of years know I'm fully into development.</p>
+                        </div>
+                    </div>
+                    <div class="order-1 md:order-2 flex justify-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-full blur-2xl opacity-20"></div>
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400" alt="Profile" class="relative rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-background shadow-xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <body>
-    <div id="root"></div>
-  </body>
-</html>
+        <!-- Blog Section -->
+        <section id="blog" class="py-20">
+            <div class="section-container">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Latest Thoughts</h2>
+                    <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        Sharing insights from my professional journey and things that inspire me
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Blog Card 1 -->
+                    <div class="card hover-shadow-lg transition-shadow cursor-pointer group">
+                        <div class="p-6">
+                            <div class="badge w-fit mb-2">Architecture</div>
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight group-hover-text-primary transition-colors mb-2">
+                                Was a tech summit worth it?
+                            </h3>
+                            <p class="text-sm text-muted-foreground">
+                                First time I participate in a tech conference and my key takeaways from the experience.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M8 2v4"></path>
+                                        <path d="M16 2v4"></path>
+                                        <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                        <path d="M3 10h18"></path>
+                                    </svg>
+                                    <span>2025-11-10</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span>8 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 2 -->
+                    <div class="card hover-shadow-lg transition-shadow cursor-pointer group">
+                        <div class="p-6">
+                            <div class="badge w-fit mb-2">Career</div>
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight group-hover-text-primary transition-colors mb-2">
+                                Lessons from My First Year in Tech
+                            </h3>
+                            <p class="text-sm text-muted-foreground">
+                                Reflections on growth, challenges, and the importance of continuous learning.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M8 2v4"></path>
+                                        <path d="M16 2v4"></path>
+                                        <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                        <path d="M3 10h18"></path>
+                                    </svg>
+                                    <span>2025-11-15</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span>6 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blog Card 3 -->
+                    <div class="card hover-shadow-lg transition-shadow cursor-pointer group">
+                        <div class="p-6">
+                            <div class="badge w-fit mb-2">Open Source</div>
+                            <h3 class="text-2xl font-semibold leading-none tracking-tight group-hover-text-primary transition-colors mb-2">
+                                A career in data, great choice!
+                            </h3>
+                            <p class="text-sm text-muted-foreground">
+                                How a career in data has opened doors to exciting opportunities and growth.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M8 2v4"></path>
+                                        <path d="M16 2v4"></path>
+                                        <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                        <path d="M3 10h18"></path>
+                                    </svg>
+                                    <span>2025-11-15</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <span>5 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 bg-section-bg">
+            <div class="section-container">
+                <div class="text-center mb-12">
+                    <h2 class="text-4xl font-bold mb-4">Experience & Education</h2>
+                    <p class="text-xl text-muted-foreground max-w-2xl mx-auto">
+                        My professional journey and academic background
+                    </p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-6">
+                    <!-- Experience Card 1 -->
+                    <div class="card border-l-4 border-l-primary">
+                        <div class="p-6">
+                            <div class="flex items-start gap-4">
+                                <div class="p-2 rounded-lg bg-primary/10">
+                                    <svg
